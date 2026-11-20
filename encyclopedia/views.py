@@ -11,8 +11,14 @@ def index(request):
     })
 
 def entry(request, title):
-    if title in util.list_entries():
-        return render(request, util.list_entries(title))
+    content = util.get_entry(title)
+    if content is None:
+        return render(request, "encyclopedia/error.html", {
+            "title": title,
+        })
     else:
-        return HttpResponse("Title does not exist.")
+        return render(request, "encyclopedia/entry.html", {
+            "data": content
+        })
+
 
