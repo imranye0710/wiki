@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 from . import util
 
-from django.http import HttpResponse
+import markdown2
+
+
 
 
 def index(request):
@@ -18,7 +20,8 @@ def entry(request, title):
         })
     else:
         return render(request, "encyclopedia/entry.html", {
-            "data": content
+            "title": title,
+            "content": markdown2.markdown(content),
         })
 
 

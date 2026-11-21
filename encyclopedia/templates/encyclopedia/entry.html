@@ -1,4 +1,9 @@
-{{% extends "encyclopedia/layout.html" %}}\
+{% extends "encyclopedia/layout.html" %}
 
-{{% block body $%}}
-{{% endblock %}}
+{% block title %}
+<h2> {{ title }} </h2>
+{% endblock %}
+
+{% block body %}
+<p> {{ content|safe }} </p>
+{% endblock %}
