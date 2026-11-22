@@ -37,5 +37,6 @@ def search(request):
         "query": query,
     })
             
-
+def newpage(request):
+    return render(request, "encyclopedia/newpage.html")
 
