@@ -38,5 +38,8 @@ def search(request):
     })
             
 def newpage(request):
+    if request.method == "POST":
+        entryname, entrytext = request.POST.get("entryname"), request.POST.get("entrytext")
+        util.save_entry(entryname, entrytext)
     return render(request, "encyclopedia/newpage.html")
 
