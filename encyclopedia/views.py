@@ -50,4 +50,11 @@ def newpage(request):
     return render(request, "encyclopedia/newpage.html")
 
 def edit(request, title):
-    return redirect("newpage", title=title)
+    content = util.get_entry(title)
+    entryname, entrytext = request.POST.get("entryname"), request.POST.get("entrytext")
+    if request.method == "POST":
+        util.save_entry(entryname, entrytext)
+    return render(request, "edit.html", {
+        "content": content,
+        "title": title,
+    })
