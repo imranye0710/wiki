@@ -5,5 +5,10 @@ edit {{ title }}
 {% endblock %}
 
 {% block body %}
-<p> {{ content|safe }} </p>
+<h1>Edit the content below</h1>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="editedtext" style="height: 500px; width: 800px;">{{ content|safe }}</textarea>
+    <input type="submit">
+</form>
 {% endblock %}
