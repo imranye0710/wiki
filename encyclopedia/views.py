@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 
+from django.http import HttpResponse
+
 from . import util
 
 import markdown2
@@ -40,6 +42,12 @@ def search(request):
 def newpage(request):
     if request.method == "POST":
         entryname, entrytext = request.POST.get("entryname"), request.POST.get("entrytext")
-        util.save_entry(entryname, entrytext)
+        if entryname in util.list_entries():
+            return HttpResponse(f"{entryname} already exists!!")
+        elif len(entryname) != 0:
+            util.save_entry(entryname, entrytext)
+            return redirect("title", title=entryname)
     return render(request, "encyclopedia/newpage.html")
 
+def edit(request, title):
+    return redirect("newpage", title=title)
