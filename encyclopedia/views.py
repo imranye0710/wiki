@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from . import util
 
-import markdown2
+import markdown2, random
 
 
 
@@ -59,3 +59,7 @@ def edit(request, title):
         "content": content,
         "title": title,
     })
+
+def randompage(request):
+    page = random.choice(util.list_entries())
+    return redirect("title", page)

@@ -36,3 +36,10 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+#npsubmit {
+    color: white;
+    background-color: black;
+    border: white solid 5px;
+    border-radius: 100px;
+}
